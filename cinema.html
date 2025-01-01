@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cinéma Camera - Une salle mythique de style Art déco où les histoires prennent vie.">
+    <title>Cinéma Camera</title>
+    <style>
+        /* Primary Colors */
+        :root {
+            --harmonized-red: #d32f2f; /* Harmonized red shade */
+            --gold-yellow: #ffd700; /* Gold/yellow accent color */
+            --neutral-light: #f8f8f8; /* Light neutral background */
+            --text-white: #fff;
+            --text-dark: #333;
+            --box-shadow-color: rgba(0, 0, 0, 0.2); /* Light shadow for hover */
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --harmonized-red: #9c1a1a; /* Dark red shade */
+            --gold-yellow: #f2b400; /* Slightly darker yellow/gold */
+            --neutral-light: #333; /* Dark background */
+            --text-white: #f8f8f8; /* Light text color */
+            --text-dark: #fff; /* Dark text color */
+        }
+
+        /* Global body styles */
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--neutral-light);
+            color: var(--text-dark);
+        }
+
+        /* Header section */
+        header {
+            background-color: var(--harmonized-red);
+            color: var(--text-white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        /* Navigation menu */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: var(--harmonized-red);
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold-yellow);
+            transform: scale(1.1);
+        }
+
+        /* Banner section */
+        .banner {
+            background-image: url('banner.jpg'); /* Set your image here */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .banner h2 {
+            color: var(--gold-yellow);
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px var(--harmonized-red);
+        }
+
+        /* General section styling */
+        .section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .section h3 {
+            border-bottom: 2px solid var(--gold-yellow);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Movies list */
+        .movies {
+            display: flex;
+            gap: 15px; /* Reduced gap */
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* Movie card */
+        .movie {
+            background-color: var(--harmonized-red);
+            padding: 8px; /* Reduced padding */
+            border-radius: 8px;
+            text-align: center;
+            flex: 1 1 calc(25% - 15px); /* Reduce the size by adjusting percentage */
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Image */
+        .movie img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Synopsis text */
+        .movie p {
+            display: none;
+            font-size: 0.9em; /* Reduced font size */
+            color: #fff;
+            transition: opacity 0.3s ease;
+        }
+
+        /* When hovering over the movie container, hide the image and show the synopsis */
+        .movie:hover img {
+            opacity: 0;  /* Make the image disappear */
+        }
+
+        .movie:hover p {
+            display: block;  /* Show the synopsis */
+            opacity: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);  /* Center the text */
+        }
+
+        .movie h4 {
+            margin-top: 10px;
+            font-size: 1.2em; /* Smaller font size */
+            transition: color 0.3s ease;
+        }
+
+        .movie:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px var(--box-shadow-color);
+        }
+
+        .movie:hover h4 {
+            color: var(--gold-yellow);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--harmonized-red);
+            color: var(--text-white);
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Toggle button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--harmonized-red);
+            color: var(--text-white);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--gold-yellow);
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle">Changer de mode</button>
+
+    <header>
+        <h1>Cinéma Camera</h1>
+        <p>Une salle mythique de style Art déco avec un charme mystérieux.</p>
+    </header>
+
+    <nav>
+        <a href="#">Accueil</a>
+        <a href="#a-propos">À propos</a>
+        <a href="#programme">Programme</a>
+        <a href="#evenements">Événements</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="banner">
+        <h2>Venez vivre la magie du cinéma</h2>
+    </div>
+
+    <section id="programme" class="section">
+        <h3>Films à l'affiche</h3>
+        <div class="movies">
+            <div class="movie">
+                <img src="movie1.png" alt="Film 1">
+                <h4>Ali Zaoua</h4>
+                <p>Ali Zaoua is a powerful drama about a group of street children in Casablanca, Morocco. The story follows Ali, a young boy who dreams of a better life despite the harsh conditions he faces on the streets. After a tragic event leads to Ali's death, his friends—who are also homeless—embark on a journey to honor his memory and fulfill his dream of escaping their grim reality. The film highlights themes of friendship, hope, and the struggle for dignity in a city filled with social and economic challenges.</p>
+            </div>
+            <div class="movie">
+                <img src="movie2.jpg" alt="Film 2">
+                <h4>Pulp Fiction</h4>
+                <p>Pulp Fiction is a cult classic crime film directed by Quentin Tarantino, known for its non-linear narrative and sharp dialogue. The film weaves together multiple interconnected storylines centered around crime in Los Angeles. We follow hitmen Vincent Vega and Jules Winnfield, the lives of a boxer on the run, a pair of armed robbers, and more. Themes of fate, redemption, and the chaos of the underworld intertwine as each character’s story intersects in unexpected and often violent ways. The film’s iconic, stylized dialogue and memorable characters have cemented its place as one of the most influential films of modern cinema.
+
+                </p>
+            </div>
+            <div class="movie">
+                <img src="movie3.jpg" alt="Film 3">
+                <h4>Inception</h4>
+                <p>Inception is a mind-bending science fiction thriller directed by Christopher Nolan. The film follows Dom Cobb, a skilled "extractor" who enters the dreams of others to steal secrets from their subconscious. Cobb is offered a chance to have his criminal record erased if he can successfully perform "inception"—planting an idea in someone’s mind without them realizing it. As Cobb and his team delve deeper into layers of dreams within dreams, they confront both the fragile nature of reality and Cobb’s own troubled past. The film explores themes of memory, grief, and the boundaries of human consciousness, leaving the audience questioning what is real and what is imagined.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="a-propos" class="section">
+        <h3>À propos</h3>
+        <p>
+            Le Cinéma Camera est une salle mythique au style Art déco, créée pour transporter les spectateurs dans un univers fascinant. Découvrez son histoire et laissez-vous séduire par son ambiance unique.
+        </p>
+    </section>
+
+    <section id="evenements" class="section">
+        <h3>Événements</h3>
+        <p>
+            Des projections spéciales, des festivals, et des soirées à thème pour les amateurs de cinéma.
+        </p>
+    </section>
+
+    <section id="contact" class="section">
+        <h3>Contact</h3>
+        <p>
+            Adresse : 123 Rue du Cinéma, Ville Imaginaire<br>
+            Téléphone : 01 23 45 67 89<br>
+            Email : contact@cinemacamera.fr
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Cinéma Camera. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+        }
+
+        // Toggle between light and dark mode
+        toggleButton.addEventListener('click', () => {
+            let currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.removeItem('theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
